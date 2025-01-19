@@ -1,0 +1,36 @@
+{
+  "name": "react-audio-streamer",
+  "version": "1.0.0",
+  "description": "A React package for bidirectional audio streaming with WebSockets using a control button.",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "keywords": [
+    "react",
+    "audio-streaming",
+    "websockets",
+    "real-time",
+    "audio",
+    "button"
+  ],
+  "author": "Farhaan Ali",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "dependencies": {
+    "react-use-websocket": "^4.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^23.0.7",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^2.79.2"
+  }
+}
