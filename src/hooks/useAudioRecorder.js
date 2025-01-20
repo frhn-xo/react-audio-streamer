@@ -1,8 +1,7 @@
 import { useRef } from 'react';
 import { Recorder } from '../utils/recorder';
-import { BUFFER_SIZE } from '../utils/constants';
 
-export function useAudioRecorder({ onAudioRecorded }) {
+export function useAudioRecorder({ onAudioRecorded, bufferSize, sampleRate }) {
   const audioRecorder = useRef(null);
 
   let buffer = new Uint8Array();
@@ -18,9 +17,9 @@ export function useAudioRecorder({ onAudioRecorded }) {
     const uint8Array = new Uint8Array(data);
     appendToBuffer(uint8Array);
 
-    if (buffer.length >= BUFFER_SIZE) {
-      const toSend = new Uint8Array(buffer.slice(0, BUFFER_SIZE));
-      buffer = new Uint8Array(buffer.slice(BUFFER_SIZE));
+    if (buffer.length >= bufferSize) {
+      const toSend = new Uint8Array(buffer.slice(0, bufferSize));
+      buffer = new Uint8Array(buffer.slice(bufferSize));
 
       const regularArray = String.fromCharCode(...toSend);
       const base64 = btoa(regularArray);
@@ -31,7 +30,7 @@ export function useAudioRecorder({ onAudioRecorded }) {
 
   const start = async () => {
     if (!audioRecorder.current) {
-      audioRecorder.current = new Recorder(handleAudioData);
+      audioRecorder.current = new Recorder(handleAudioData, sampleRate);
     }
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     audioRecorder.current.start(stream);

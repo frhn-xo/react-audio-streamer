@@ -1,11 +1,15 @@
 {
   "name": "react-audio-streamer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A React package for bidirectional audio streaming with WebSockets using a control button.",
   "main": "dist/bundle.cjs.js",
   "module": "dist/bundle.esm.js",
   "scripts": {
     "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frhn-xo/react-audio-streamer.git"
   },
   "keywords": [
     "react",

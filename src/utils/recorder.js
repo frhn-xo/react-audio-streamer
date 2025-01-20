@@ -1,8 +1,7 @@
-import { SAMPLE_RATE } from './constants';
-
 export class Recorder {
-  constructor(onDataAvailable) {
+  constructor(onDataAvailable, sampleRate) {
     this.onDataAvailable = onDataAvailable;
+    this.sampleRate = sampleRate;
     this.audioContext = null;
     this.mediaStream = null;
     this.mediaStreamSource = null;
@@ -15,7 +14,7 @@ export class Recorder {
         await this.audioContext.close();
       }
 
-      this.audioContext = new AudioContext({ sampleRate: SAMPLE_RATE });
+      this.audioContext = new AudioContext({ sampleRate: this.sampleRate });
 
       const processorCode = `
                 const MIN_INT16 = -0x8000;

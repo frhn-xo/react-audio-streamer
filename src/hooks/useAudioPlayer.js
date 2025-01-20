@@ -1,13 +1,12 @@
 import { useRef } from 'react';
 import { Player } from '../utils/player';
-import { SAMPLE_RATE } from '../utils/constants';
 
-export function useAudioPlayer() {
+export function useAudioPlayer({ sampleRate }) {
   const audioPlayer = useRef(null);
 
   const reset = () => {
-    audioPlayer.current = new Player();
-    audioPlayer.current.init(SAMPLE_RATE);
+    audioPlayer.current = new Player(sampleRate);
+    audioPlayer.current.init();
   };
 
   const play = (base64Audio) => {

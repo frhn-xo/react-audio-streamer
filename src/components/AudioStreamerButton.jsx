@@ -3,7 +3,12 @@ import { useAudioRecorder } from '../hooks/useAudioRecorder';
 import { useAudioPlayer } from '../hooks/useAudioPlayer';
 import { useRealTime } from '../hooks/useRealTime';
 
-export function AudioStreamerButton({ wsEndpoint, onToggle }) {
+export function AudioStreamerButton({
+  wsEndpoint,
+  onToggle,
+  sampleRate = 24000,
+  bufferSize = 4800,
+}) {
   const [isRecording, setIsRecording] = useState(false);
   useEffect(() => {
     onToggle(isRecording);
@@ -30,9 +35,9 @@ export function AudioStreamerButton({ wsEndpoint, onToggle }) {
     reset: resetAudioPlayer,
     play: playAudio,
     stop: stopAudioPlayer,
-  } = useAudioPlayer();
+  } = useAudioPlayer({ sampleRate });
   const { start: startAudioRecording, stop: stopAudioRecording } =
-    useAudioRecorder({ onAudioRecorded: addUserAudio });
+    useAudioRecorder({ onAudioRecorded: addUserAudio, bufferSize, sampleRate });
 
   const onToggleListening = async () => {
     if (!isRecording) {

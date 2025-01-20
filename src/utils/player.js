@@ -1,12 +1,11 @@
-import { SAMPLE_RATE } from './constants';
-
 export class Player {
-  constructor() {
+  constructor(sampleRate) {
+    this.sampleRate = sampleRate;
     this.playbackNode = null;
   }
 
-  async init(sampleRate = SAMPLE_RATE) {
-    const audioContext = new AudioContext({ sampleRate });
+  async init() {
+    const audioContext = new AudioContext({ sampleRate: this.sampleRate });
     const playbackCode = `
             class AudioPlaybackWorklet extends AudioWorkletProcessor {
                 constructor() {
